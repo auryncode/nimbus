@@ -1,0 +1,1 @@
+<footer class="flex w-full py-8 justify-center text-amber-50 font-medium">&copy; Heri Riyanto 2025</footer>

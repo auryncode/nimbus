@@ -29,15 +29,21 @@
 	});
 </script>
 
-{#if loading}
-	<p>loading</p>
-{:else}
-	<div class="mt-13 flex flex-col items-end lg:items-center justify-around lg:flex-row">
-		<img
-			class="hidden drop-shadow-2xl lg:block sm:h-[550px] sm:w-[550px]"
-			src="images/ilustrasi/weather.png"
-			alt="Weather Ilustration"
-		/>
+<svelte:head>
+	<title>Home | Nimbus</title>
+	<meta
+		name="description"
+		content="Pantau cuaca hari ini dan prediksi esok dengan mudah. Prakiraan akurat, kapan pun Anda butuhkan"
+	/>
+</svelte:head>
+
+<div class="mt-13 flex flex-col items-end justify-around lg:flex-row lg:items-center">
+	<img
+		class="hidden drop-shadow-2xl sm:h-[550px] sm:w-[550px] lg:block"
+		src="images/ilustrasi/weather.png"
+		alt="Weather Ilustration"
+	/>
+	{#if !loading && weather !== null}
 		<Glassmorphism
 			className="h-full sm:w-[420px] w-full flex col-end-6 flex-col justify-between py-4 px-8 rounded-4xl"
 		>
@@ -58,9 +64,13 @@
 				</p>
 			</div>
 		</Glassmorphism>
-	</div>
+	{:else}
+		<div class="block h-[220px] w-full animate-pulse rounded-4xl bg-gray-800 sm:w-[420px]"></div>
+	{/if}
+</div>
 
-	<div class="mt-13 grid grid-cols-1 gap-8 sm:mt-28 sm:grid-cols-2 md:grid-cols-3">
+<div class="mt-13 grid grid-cols-1 gap-8 sm:mt-28 sm:grid-cols-2 md:grid-cols-3">
+	{#if !loading && infos != null}
 		{#each infos as info}
 			{@const Icon = info.icon}
 			<Glassmorphism className="rounded-xl flex flex-col p-5 h-[8rem] justify-around">
@@ -73,5 +83,9 @@
 				</p>
 			</Glassmorphism>
 		{/each}
-	</div>
-{/if}
+	{:else}
+		{#each Array(3) as item}
+			<div class="block h-[8rem] w-full animate-pulse rounded-xl bg-gray-800"></div>
+		{/each}
+	{/if}
+</div>

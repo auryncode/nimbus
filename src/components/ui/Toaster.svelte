@@ -42,7 +42,4 @@
 			transform: translateY(0);
 		}
 	}
-	.animate-fade-in {
-		animation: fade-in 0.8s ease;
-	}
 </style>

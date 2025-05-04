@@ -7,9 +7,9 @@
 	import { PUBLIC_URL_NOMINATIM } from '$env/static/public';
 	import Glassmorphism from './Glassmorphism.svelte';
 
-	let inputRef;
+	let inputRef = $state();
 	let cari = $state(false);
-	let refLoc = $state([]);
+	let refLoc = $state(null);
 
 	async function handleClick() {
 		cari = true;
@@ -71,14 +71,14 @@
 				class="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer text-amber-50"
 				onclick={() => {
 					cari = false;
-					refLoc = [];
+					refLoc = null;
 				}}
 			>
 				<X size={16} />
 			</button>
 		</div>
 
-		{#if refLoc.length > 0}
+		{#if refLoc != null}
 			<Glassmorphism
 				className="absolute z-50 max-h-[250px] w-full overflow-y-scroll p-4 rounded-lg flex flex-col gap-4 ring-2 ring-amber-50 bottom-[calc(100%+28px)] md:bottom-auto md:top-[calc(100%+28px)]"
 			>

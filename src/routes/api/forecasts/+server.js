@@ -1,3 +1,4 @@
+import { URL_ICON_OWM } from "$env/static/private";
 import { APIKEY_OWM, URL_OWM } from "$env/static/private"
 
 export const GET = async ({ url }) => {
@@ -28,7 +29,7 @@ export const GET = async ({ url }) => {
                 time: time.slice(0, 5), // HH:MM
                 temp: item.main.temp,
                 weather: item.weather[0].main,
-                icon: item.weather[0].icon,
+                icon: `${URL_ICON_OWM}/${item.weather[0].icon}@2x.png`,
                 description: item.weather[0].description
             };
 

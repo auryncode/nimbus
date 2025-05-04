@@ -1,7 +1,6 @@
 <script>
 	import Glassmorphism from '../../components/ui/Glassmorphism.svelte';
 	import { getday } from '$lib/utills/time';
-	import { PUBLIC_URL_ICON_OWM } from '$env/static/public';
 	import Tab from '$components/ui/Tab.svelte';
 	import { location } from '$stores/location';
 
@@ -83,11 +82,7 @@
 				<Glassmorphism
 					className="flex w-full sm:w-full lg:w-[170px] shrink-0 flex-col items-center rounded-2xl py-4"
 				>
-					<img
-						class="h-[100px] w-[100px]"
-						src={`${PUBLIC_URL_ICON_OWM}/${item.icon}@2x.png`}
-						alt="Clear Sky"
-					/>
+					<img class="h-[100px] w-[100px]" src={item.icon} alt="Clear Sky" />
 					<div class="flex w-full flex-col items-center gap-1">
 						<span class="font-bold">{item.time}</span>
 						<div class="flex items-center">

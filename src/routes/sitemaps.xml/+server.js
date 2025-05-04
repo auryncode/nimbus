@@ -12,13 +12,13 @@ export async function GET() {
 		>
 			<!-- <url> elements go here -->
 			<url>
-				<loc>https://nimbus.vercel.app.com/</loc>
+				<loc>https://nimbus-six-pi.vercel.app/</loc>
 				<lastmod>2025-05-04</lastmod>
 				<changefreq>daily</changefreq>
 				<priority>1.0</priority>
 			</url>
 			<url>
-				<loc>https://numbus.vercel.app.com/forecasts</loc>
+				<loc>https://nimbus-six-pi.vercel.app/forecasts</loc>
 				<lastmod>2025-05-04</lastmod>
 				<changefreq>daily</changefreq>
 				<priority>0.8</priority>

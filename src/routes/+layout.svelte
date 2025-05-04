@@ -6,6 +6,11 @@
 	import Navbar from '../components/Navbar.svelte';
 	import { PUBLIC_URL_NOMINATIM } from '$env/static/public';
 	import Toaster from '$components/ui/Toaster.svelte';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+
+	injectSpeedInsights();
+	injectAnalytics();
 
 	let { children } = $props();
 
@@ -47,7 +52,7 @@
 </script>
 
 <Navbar />
-<main class="container relative">
+<main class="relative container">
 	{@render children()}
 </main>
 <Footer />

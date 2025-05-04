@@ -10,4 +10,12 @@ export default defineConfig({
 			'@': path.resolve(__dirname, './src'),
 		}
 	},
+	// server: {
+	// 	host: true,
+	// 	hmr: {
+	// 		protocol: 'wss',
+	// 		host: 'ample-jay-top.ngrok-free.app',
+	// 		port: 443
+	// 	}
+	// }
 });

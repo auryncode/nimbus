@@ -32,15 +32,16 @@
 	let tabs = $state('today');
 
 	let filteredForecast = $derived(
-		Object.keys(forecasts)
-			.filter((date) => getday(date).toLowerCase() == tabs)
-			.flatMap((date) => forecasts[date])
+		!loading &&
+			Object.keys(forecasts)
+				.filter((date) => getday(date).toLowerCase() == tabs)
+				.flatMap((date) => forecasts[date])
 	);
 </script>
 
 {#if !loading}
 	<div class="mt-13 flex">
-		<Glassmorphism className="w-full sm:w-[600px] p-6 rounded-2xl">
+		<Glassmorphism className="w-full md:w-[600px] p-6 rounded-2xl">
 			<h1 class="mb-3 text-3xl font-bold sm:text-5xl">
 				Stay Ready with the <span class="text-indigo-600">Latest Weather Forecast</span>
 			</h1>
@@ -51,20 +52,26 @@
 			</p>
 		</Glassmorphism>
 	</div>
-	<div class="mt-13 flex gap-4">
-		{#each Object.entries(forecasts) as [date]}
-			<Tab
-				onClick={() => (tabs = getday(date).toLowerCase())}
-				active={tabs == getday(date).toLowerCase()}
-				label={getday(date)}
-			/>
-		{/each}
-	</div>
+	<Glassmorphism className="mt-13 overflow-x-scroll rounded-full w-full xl:w-fit">
+		<div class="flex gap-4">
+			{#each Object.entries(forecasts) as [date]}
+				<Tab
+					onClick={() => (tabs = getday(date).toLowerCase())}
+					active={tabs == getday(date).toLowerCase()}
+					label={getday(date)}
+				/>
+			{/each}
+		</div>
+	</Glassmorphism>
 
 	<div class="flex flex-col gap-2 rounded-xl p-5">
-		<div class="flex w-full flex-nowrap items-center gap-5 overflow-x-scroll scroll-smooth py-4">
+		<div
+			class="grid w-full grid-cols-1 gap-5 py-4 sm:grid-cols-2 lg:flex lg:flex-row lg:overflow-x-scroll lg:scroll-smooth"
+		>
 			{#each filteredForecast as item}
-				<Glassmorphism className="flex w-[170px] shrink-0 flex-col items-center rounded-2xl py-4">
+				<Glassmorphism
+					className="flex w-full sm:w-full lg:w-[170px] shrink-0 flex-col items-center rounded-2xl py-4"
+				>
 					<img
 						class="h-[100px] w-[100px]"
 						src={`${PUBLIC_URL_ICON_OWM}/${item.icon}@2x.png`}
@@ -77,7 +84,6 @@
 							<span class="mx-4 inline-block h-[18px] rounded-full border"></span>
 							<span>{Math.round(item.temp)}°C</span>
 						</div>
-						<!-- <span class="text-sm font-bold">{item.weather}</span> -->
 					</div>
 				</Glassmorphism>
 			{/each}

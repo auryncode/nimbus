@@ -35,17 +35,27 @@
 	}
 
 	function handleChangeLocation(loc) {
+		localStorage.setItem(
+			'geolocation',
+			JSON.stringify({
+				city: loc.display_name.split(',')[0],
+				lat: loc.lat,
+				lon: loc.lon
+			})
+		);
+
 		location.update((prev) => ({
 			city: loc.display_name.split(',')[0],
 			lat: loc.lat,
 			lon: loc.lon
 		}));
+
 		cari = false;
 	}
 </script>
 
 {#if cari}
-	<div class="relative">
+	<div class="relative p-0">
 		<div class="relative">
 			<input
 				in:fly={{ duration: 600, x: 80 }}
@@ -59,7 +69,10 @@
 			<button
 				in:fly={{ duration: 600, x: 80 }}
 				class="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer text-amber-50"
-				onclick={() => (cari = false)}
+				onclick={() => {
+					cari = false;
+					refLoc = [];
+				}}
 			>
 				<X size={16} />
 			</button>
@@ -67,7 +80,7 @@
 
 		{#if refLoc.length > 0}
 			<Glassmorphism
-				className="absolute mt-6 max-h-[250px] w-full overflow-y-scroll z-50 p-4 rounded-lg flex flex-col gap-4 ring-2 ring-amber-50"
+				className="absolute z-50 max-h-[250px] w-full overflow-y-scroll p-4 rounded-lg flex flex-col gap-4 ring-2 ring-amber-50 bottom-[calc(100%+28px)] md:bottom-auto md:top-[calc(100%+28px)]"
 			>
 				{#each refLoc as loc (loc.place_id)}
 					<button

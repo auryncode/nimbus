@@ -19,17 +19,54 @@ body {
     background-attachment: fixed;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    /* atau absolute kalau gak mau ikut scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 0;
+}
+
 @media (max-width: 640px) {
     .container {
-        padding-inline: 2rem;
+        padding-inline: 1.3rem;
     }
 
     body {
-
         background-position: right top;
     }
 
 }
+
+@media (min-width: 768px) {
+    .container {
+        padding-inline: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding-inline: 3.2rem;
+    }
+}
+@media (min-width: 1280px) {
+    .container {
+        padding-inline: 5rem;
+    }
+}
+
+@media (min-width: 1536px) {
+    .container {
+        padding-inline: 6rem;
+    }
+}
+
+
 
 @layer base {
     body {

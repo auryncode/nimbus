@@ -32,9 +32,9 @@
 {#if loading}
 	<p>loading</p>
 {:else}
-	<div class="mt-13 flex flex-col items-center justify-around sm:flex-row">
+	<div class="mt-13 flex flex-col items-end lg:items-center justify-around lg:flex-row">
 		<img
-			class="hidden drop-shadow-2xl sm:block sm:h-[550px] sm:w-[550px]"
+			class="hidden drop-shadow-2xl lg:block sm:h-[550px] sm:w-[550px]"
 			src="images/ilustrasi/weather.png"
 			alt="Weather Ilustration"
 		/>
@@ -60,7 +60,7 @@
 		</Glassmorphism>
 	</div>
 
-	<div class="mt-13 grid grid-cols-1 gap-8 sm:mt-28 sm:grid-cols-3">
+	<div class="mt-13 grid grid-cols-1 gap-8 sm:mt-28 sm:grid-cols-2 md:grid-cols-3">
 		{#each infos as info}
 			{@const Icon = info.icon}
 			<Glassmorphism className="rounded-xl flex flex-col p-5 h-[8rem] justify-around">

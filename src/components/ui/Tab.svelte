@@ -6,7 +6,7 @@
 
 {#if active}
 	<Glassmorphism
-		className="px-5 py-2 w-[150px] text-center rounded-full cursor-pointer font-semibold"
+		className="px-5 py-2 w-[150px] text-center rounded-full cursor-pointer font-semibold text-indigo-500"
 	>
 		{label}</Glassmorphism
 	>

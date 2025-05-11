@@ -1,5 +1,5 @@
 <script>
-	import Glassmorphism from '../../components/ui/Glassmorphism.svelte';
+	import Glassmorphism from '$components/ui/Glassmorphism.svelte';
 	import { getday } from '$lib/utills/time';
 	import Tab from '$components/ui/Tab.svelte';
 	import { location } from '$stores/location';

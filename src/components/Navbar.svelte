@@ -51,12 +51,14 @@
 				</div>
 				<button class="" onclick={toogleNavbar}><X size={24} /></button>
 			</div>
-			<div class="flex h-full flex-col justify-between">
+			<div class="flex h-full max-h-[100dvh] flex-col justify-between">
 				<div class="mt-13 flex flex-col gap-4">
 					<SideLink onClick={toogleNavbar} href="/" label="Home" />
 					<SideLink onClick={toogleNavbar} href="/forecasts" label="Forecasts" />
 				</div>
-				<Glassmorphism className="rounded-xl p-4 text-center font-semibold block md:hidden">
+				<Glassmorphism
+					className="sticky z-50 bottom-0 rounded-xl p-4 text-center font-semibold block md:hidden"
+				>
 					<Location />
 				</Glassmorphism>
 			</div>

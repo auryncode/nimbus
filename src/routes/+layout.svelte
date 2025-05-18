@@ -51,6 +51,10 @@
 	});
 </script>
 
+<svelte:head>
+	<link rel="preload" as="image" href="/images/background/japan.jpg" />
+</svelte:head>
+
 <Navbar />
 <main class="relative container">
 	{@render children()}

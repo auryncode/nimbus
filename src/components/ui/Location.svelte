@@ -60,6 +60,7 @@
 			<input
 				in:fly={{ duration: 600, x: 80 }}
 				bind:this={inputRef}
+				onfocus={() => inputRef.scrollIntoView({ behavior: 'smooth', block: 'center' })}
 				onkeydown={handleSearchLocation}
 				value={$location.city}
 				type="text"
@@ -95,7 +96,11 @@
 		{/if}
 	</div>
 {:else}
-	<button in:fly={{ duration: 600, x: 80 }} onclick={handleClick} class="flex cursor-pointer gap-2">
+	<button
+		in:fly={{ duration: 600, x: 80 }}
+		onclick={handleClick}
+		class="flex h-full w-full cursor-pointer gap-2"
+	>
 		<MapPin size={20} />
 		<span class="font-semibold capitalize">{$location.city}</span>
 	</button>

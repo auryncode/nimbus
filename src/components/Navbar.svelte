@@ -57,7 +57,7 @@
 					<SideLink onClick={toogleNavbar} href="/forecasts" label="Forecasts" />
 				</div>
 				<Glassmorphism
-					className="sticky z-50 bottom-0 rounded-xl p-4 text-center font-semibold block md:hidden"
+					className="sticky z-50 bottom-8 rounded-xl p-4 text-center font-semibold block md:hidden"
 				>
 					<Location />
 				</Glassmorphism>

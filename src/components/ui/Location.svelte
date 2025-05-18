@@ -21,7 +21,8 @@
 		if (e.key !== 'Enter') return;
 		const params = new URLSearchParams({
 			q: e.target.value,
-			format: 'json'
+			format: 'json',
+			limit: '5'
 		});
 		fetch(`${PUBLIC_URL_NOMINATIM}/search?${params}`)
 			.then((res) => res.json())

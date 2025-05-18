@@ -20,35 +20,44 @@
 			location.set(JSON.parse(saved));
 			return;
 		}
-		navigator.geolocation.getCurrentPosition((position) => {
+
+		navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
+			if (permissionStatus.state === 'granted') {
+				getUserLocation();
+			}
+
+			permissionStatus.onchange = () => {
+				if (permissionStatus.state === 'granted') {
+					getUserLocation();
+				}
+			};
+		});
+	});
+
+	function getUserLocation() {
+		navigator.geolocation.getCurrentPosition(async (position) => {
 			const { coords } = position;
+
 			const params = new URLSearchParams({
 				lat: coords.latitude.toString(),
 				lon: coords.longitude.toString(),
 				format: 'json'
 			});
 
-			fetch(`${PUBLIC_URL_NOMINATIM}/reverse?${params}`)
-				.then((res) => res.json())
-				.then((data) => {
-					const { address } = data;
-					location.update((prev) => ({
-						city: address.city,
-						lat: coords.latitude,
-						lon: coords.longitude
-					}));
+			const res = await fetch(`${PUBLIC_URL_NOMINATIM}/reverse?${params}`);
+			const data = await res.json();
+			const { address } = data;
 
-					localStorage.setItem(
-						'geolocation',
-						JSON.stringify({
-							city: address.city,
-							lat: coords.latitude,
-							lon: coords.longitude
-						})
-					);
-				});
+			const newLocation = {
+				city: address.city ?? address.town ?? address.village ?? 'Unknown',
+				lat: coords.latitude,
+				lon: coords.longitude
+			};
+
+			location.set(newLocation);
+			localStorage.setItem('geolocation', JSON.stringify(newLocation));
 		});
-	});
+	}
 </script>
 
 <svelte:head>
